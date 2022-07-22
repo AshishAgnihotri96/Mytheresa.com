@@ -6,12 +6,12 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Spacer,
-  Tooltip
+  Spacer
 } from "@chakra-ui/react";
 import Exclusive from "./Exclusiv";
 import Images from "./Image";
 import NewArrival from "./NewArrivals";
+import Product from "./Product";
 
 const options = [
   "NEW ARRIVAL",
@@ -27,15 +27,23 @@ const options = [
 function HomePage() {
   return (
     <Box>
-      <Box justifyContent="center" display="flex" alignItems="center">
+      <Box
+        width="100%"
+        justifyContent="center"
+        alignContent="center"
+        display="flex"
+      >
         <Image
+          ml="13rem"
           w="500px"
           h="250px"
           alt="Cam-Logo"
           src="https://mms.businesswire.com/media/20210914005235/en/905258/22/MyTheresa_Logo_black.jpg"
         />
 
-        <Box as="button">SHOPPING BAG</Box>
+        <Box ml="11rem" as="button">
+          SHOPPING BAG
+        </Box>
       </Box>
       <Box>
         <Flex>
@@ -70,6 +78,12 @@ function HomePage() {
       <Images />
       <NewArrival />
       <Exclusive />
+      <Product />
+      <Image
+        cursor="pointer"
+        alt="footer"
+        src="https://i.im.ge/2022/07/23/Fa0bJL.png"
+      />
     </Box>
   );
 }

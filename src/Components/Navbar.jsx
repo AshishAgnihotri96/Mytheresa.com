@@ -1,17 +1,18 @@
+import Myaccount from "../Pages/MyAccount";
 import ModalPop from "./ModalPop";
 
-const { Box, Flex, Button, Spacer } = require("@chakra-ui/react");
+const { Box, Flex, Spacer } = require("@chakra-ui/react");
 const menu = ["WOMEN", "MEN", "KIDS", "LIFE"];
 
-const accountSection = ["Signup For Newsletter", "My Account", "My WishList"];
+const accountSection = ["Signup For Newsletter", "My WishList"];
 function Navbar() {
   return (
     <Box>
       <Box display="flex" justifyContent="center" alignItems="center">
         <Flex gap="0.5rem">
-          {menu.map((item) => {
+          {menu.map((item, i) => {
             return (
-              <Box p="1rem" as="button">
+              <Box key={i} p="1rem" as="button">
                 {item}
               </Box>
             );
@@ -33,7 +34,9 @@ function Navbar() {
             );
           })}
         </Flex>
+        <Myaccount/>
         <ModalPop />
+        
       </Box>
     </Box>
   );

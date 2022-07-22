@@ -11,9 +11,7 @@ const root = createRoot(rootElement);
 root.render(
   <BrowserRouter>
     <ChakraProvider>
-      <StrictMode>
-        <App />
-      </StrictMode>
+      <App />
     </ChakraProvider>
   </BrowserRouter>
 );
