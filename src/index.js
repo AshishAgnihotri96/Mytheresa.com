@@ -9,11 +9,11 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
-  <BrowserRouter>
-    <ChakraProvider>
-      <StrictMode>
+  <StrictMode>
+    <BrowserRouter>
+      <ChakraProvider>
         <App />
-      </StrictMode>
-    </ChakraProvider>
-  </BrowserRouter>
+      </ChakraProvider>
+    </BrowserRouter>
+  </StrictMode>
 );

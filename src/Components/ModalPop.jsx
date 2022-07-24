@@ -9,35 +9,30 @@ import {
   Button,
   useDisclosure,
   FormControl,
-  Input,
   FormLabel,
   Box,
   Select
 } from "@chakra-ui/react";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
+import { countryList } from "../../Country";
+import { Lang } from "../../Language";
 
 function ModalPop() {
+  const initialcountry = "India";
+  const initiallang = "English";
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [country, setcountry] = useState(initialcountry);
+  const [lang, setlang] = useState(initiallang);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
-  const [county, setcountry] = useState("");
-  function getCountry() {
-    fetch("https://countriesnow.space/api/v0.1/countries/")
-      .then((res) => {
-        res.json();
-      })
-      .then((res) => {
-        const count = res.data.country;
-        console.log(count);
-      })
-      .catch((err) => console.log(err));
-  }
 
-  useEffect(() => {
-    getCountry();
-  }, []);
+  const handleChangeCountry = (e) => {
+    setcountry(e.target.value);
+  };
+  const handleChangeLang = (e) => {
+    setlang(e.target.value);
+  };
 
   return (
     <>
@@ -48,7 +43,7 @@ function ModalPop() {
         as="button"
         onClick={onOpen}
       >
-        India|English
+        {country}|{lang}
       </Box>
 
       <Modal
@@ -58,31 +53,61 @@ function ModalPop() {
         onClose={onClose}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Select Country And Language</ModalHeader>
+        <ModalContent maxWidth="3xl">
           <ModalCloseButton />
-          <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>Select County</FormLabel>
-              <Select placeholder="Select Country">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-              </Select>
-            </FormControl>
+          <ModalBody bg="#f2f2f2" pb={6}>
+            <ModalHeader fontSize="15px" fontWeight="thin" textAlign="center">
+              PLEASE CHOOSE THE DESTINATION OF DELIVERY.
+            </ModalHeader>
+            <Box display="flex">
+              <FormControl mr="1rem">
+                <FormLabel>YOUR REGION</FormLabel>
+                <Select
+                  onChange={handleChangeCountry}
+                  placeholder="Select Country"
+                >
+                  {countryList.map((item) => {
+                    return <option value={item}>{item}</option>;
+                  })}
+                </Select>
+              </FormControl>
 
-            <FormControl mt={4}>
-              <FormLabel>Select Language</FormLabel>
-              <Input placeholder="Last name" />
-            </FormControl>
+              <FormControl>
+                <FormLabel>YOUR LANGUAGE</FormLabel>
+                <Select
+                  onChange={handleChangeLang}
+                  placeholder="Select Country"
+                >
+                  {Lang.map((item) => {
+                    return <option value={item}>{item}</option>;
+                  })}
+                </Select>
+              </FormControl>
+            </Box>
+            <ModalFooter justifyContent="center">
+              <Button
+                bottom="0"
+                _hover={{ bg: "black" }}
+                h="2rem"
+                w="9rem"
+                p="1rem"
+                borderRadius="none"
+                mt="2rem"
+                fontSize="12px"
+                color="white"
+                bg="black"
+                fontWeight="thin"
+                onClick={onClose}
+              >
+                CONTINUE SHOPPING
+              </Button>
+            </ModalFooter>
           </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
+          <Box p="3rem">
+            Please note: the items in your shopping bag may be deleted if you
+            change your region or your delivery destination.
+          </Box>
         </ModalContent>
       </Modal>
     </>

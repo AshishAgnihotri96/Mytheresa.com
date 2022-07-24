@@ -66,13 +66,21 @@ function Exclusive() {
         {dataDetails.map((item) => {
           return (
             <GridItem area={item.area}>
-              <Text mt="4.75rem">{item.title1}</Text>
-              <Box mb="5rem" fontSize="3xl">
+              <Text color="blackAlpha.900" fontWeight="thin" mt="4.75rem">
+                {item.title1}
+              </Text>
+              <Text
+                color="blackAlpha.900"
+                fontWeight="medium"
+                mb="5rem"
+                fontSize="3xl"
+              >
                 {item.title2}
-              </Box>
+              </Text>
 
               <Image alr={item.area} src={item.image} />
               <Button
+                bottom="0"
                 _hover={{ bg: "black" }}
                 h="2rem"
                 w="9rem"
@@ -90,7 +98,6 @@ function Exclusive() {
         })}
       </Grid>
       <Grid
-        mt="-3rem"
         templateAreas={`"nav footer "  
                   " header footer"`}
         gridTemplateRows={"50% "}
@@ -103,13 +110,21 @@ function Exclusive() {
         {dataDetails2.map((item) => {
           return (
             <GridItem area={item.area}>
-              <Text mt="5rem">{item.title1}</Text>
-              <Box mb="3.25rem" fontSize="3xl">
+              <Text color="blackAlpha.900" fontWeight="thin" mt="5rem">
+                {item.title1}
+              </Text>
+              <Text
+                color="blackAlpha.900"
+                fontWeight="medium"
+                mb="5rem"
+                fontSize="3xl"
+              >
                 {item.title2}
-              </Box>
+              </Text>
 
               <Image alr={item.area} src={item.image} />
               <Button
+                bottom="0"
                 _hover={{ bg: "black" }}
                 h="2rem"
                 w="9rem"
